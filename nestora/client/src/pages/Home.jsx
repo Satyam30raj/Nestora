@@ -1,4 +1,4 @@
-
+import API_BASE_URL from "../api.js";
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import PropertyCard from "../components/PropertyCard";
