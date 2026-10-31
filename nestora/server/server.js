@@ -12,22 +12,24 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  process.env.CLIENT_URL,
-].filter(Boolean);
+  "https://nestora-frontend-vt8r.onrender.com",
+];
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow non-browser requests (for example, health checks) and configured origins.
       if (!origin || allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
 
+      console.error("Blocked CORS origin:", origin);
       return callback(new Error("Not allowed by CORS"));
     },
   })
 );
+
 app.use(express.json());
+
 app.use("/api/properties", propertyRoutes);
 app.use("/api/auth", authRoutes);
 
